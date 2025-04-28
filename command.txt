@@ -1,0 +1,8 @@
+info
+insert
+show
+update
+remove_key
+save
+exit
+clear
