@@ -1,11 +1,176 @@
-ID: 1763890301, 
-Название: 4, 
-Оценка: 4.0, 
-Координата по X: 4, 
-Координата по Y: 4, 
-Дата создания: 2025-04-19, 
-Минимальный балл: 4.0, 
-Личные качества: 4.0, 
-Сложность: null, 
-Дисциплина: 4
+ID; 1959644630; 
+Name;  871; 
+Value; 81.11; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 95.54; 
+Personal qualities; 2.89; 
+Difficulty; TERRIBLE; 
+Discipline; AutoDiscipline_6; 
+
+ID; 1004457093; 
+Name;  821; 
+Value; 51.65; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 80.31; 
+Personal qualities; 1.42; 
+Difficulty; VERY_HARD; 
+Discipline; AutoDiscipline_10; 
+
+ID; 931721279; 
+Name;  2; 
+Value; 58.77; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 60.02; 
+Personal qualities; 5.94; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_13; 
+
+ID; 1647946086; 
+Name;  10; 
+Value; 43.75; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 32.09; 
+Personal qualities; 7.27; 
+Difficulty; TERRIBLE; 
+Discipline; AutoDiscipline_15; 
+
+ID; 1612715072; 
+Name;  801; 
+Value; 97.06; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 47.98; 
+Personal qualities; 2.6; 
+Difficulty; VERY_HARD; 
+Discipline; AutoDiscipline_70; 
+
+ID; 1184955083; 
+Name;  783; 
+Value; 73.58; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 56.01; 
+Personal qualities; 4.53; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_92; 
+
+ID; 1096625995; 
+Name;  230; 
+Value; 62.3; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 78.54; 
+Personal qualities; 9.68; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_87; 
+
+ID; 759492550; 
+Name;  255; 
+Value; 33.21; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 72.25; 
+Personal qualities; 6.21; 
+Difficulty; VERY_HARD; 
+Discipline; AutoDiscipline_10; 
+
+ID; 2110323829; 
+Name;  970; 
+Value; 51.32; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 82.03; 
+Personal qualities; 2.2; 
+Difficulty; VERY_HARD; 
+Discipline; AutoDiscipline_73; 
+
+ID; 2111978633; 
+Name;  662; 
+Value; 18.24; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 28.71; 
+Personal qualities; 9.01; 
+Difficulty; VERY_HARD; 
+Discipline; AutoDiscipline_18; 
+
+ID; 173806808; 
+Name;  4; 
+Value; 13.48; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 42.88; 
+Personal qualities; 9.18; 
+Difficulty; TERRIBLE; 
+Discipline; AutoDiscipline_93; 
+
+ID; 1311646735; 
+Name;  746; 
+Value; 5.23; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 35.78; 
+Personal qualities; 5.02; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_18; 
+
+ID; 478039434; 
+Name;  842; 
+Value; 92.01; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 14.37; 
+Personal qualities; 2.68; 
+Difficulty; TERRIBLE; 
+Discipline; AutoDiscipline_74; 
+
+ID; 1141842483; 
+Name;  320; 
+Value; 68.34; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 80.84; 
+Personal qualities; 9.78; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_9; 
+
+ID; 294487445; 
+Name;  596; 
+Value; 47.1; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 13.79; 
+Personal qualities; 8.67; 
+Difficulty; TERRIBLE; 
+Discipline; AutoDiscipline_29; 
+
+ID; 1942476516; 
+Name;  116; 
+Value; 56.26; 
+Coordinates on X; -294; 
+Coordinates on Y; 6724765532795605373; 
+Creation date; 2025-05-04; 
+Minimal point; 16.82; 
+Personal qualities; 3.2; 
+Difficulty; IMPOSSIBLE; 
+Discipline; AutoDiscipline_15; 
 

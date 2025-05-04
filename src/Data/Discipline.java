@@ -18,6 +18,11 @@ public class Discipline {
     public String getName() {
         return name;
     }
+
+    public Integer getLectureHours() {
+        return lectureHours;
+    }
+
     @Override
     public String toString() {
         return "Discipline {name='" + name + "', lectureHours=" + lectureHours + "}";

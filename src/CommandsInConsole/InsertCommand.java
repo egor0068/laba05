@@ -13,31 +13,43 @@ import java.util.Arrays;
 
 public class InsertCommand extends MainCommand {
     private final CollectionManager collectionManager;
-    private final Console console;
+    private final Console console4;
 
     public InsertCommand(CollectionManager collectionManager, Console console) {
         super("insert", "добавить элемент с заданным ключом");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console4 = console;
     }
+
     @Override
     public boolean apply(String[] arguments) {
         try {
-            int key = labKey();  // Запрос ключа
+            // Запрос ключа
+            int key = labKey();
             if (collectionManager.containsKey(key)) {
-                console.println("Ошибка: Элемент с ключом " + key + " уже существует");
+                console4.println("Ошибка: Элемент с ключом " + key + " уже существует!");
                 return false;
             }
+            // Ввод основных данных
             String name = labName("Название лабораторной работы");
             String disciplineName = disciplineName("Название дисциплины");
             Double value = value("Оценка");
+
+            // Ввод координат
             Coordinates coordinates = coordinates();
+
+            // Ввод числовых параметров
             Double minimalPoint = minimalPoint("Минимальный балл");
             float personalQualitiesMinimum = qualitiesMinimum("Минимальные личные качества");
-            Difficulty difficulty = difficulty();
+
+            // Ввод сложности
+            DifficultyEnum difficulty = difficulty();
+
+            // Ввод данных дисциплины
             int lectureHours = lectureHours();
             Discipline discipline = new Discipline(disciplineName, lectureHours);
 
+            // Создание объекта LabWork
             LabWork labWork = new LabWork(
                     value,
                     name,
@@ -48,15 +60,21 @@ public class InsertCommand extends MainCommand {
                     difficulty,
                     discipline
             );
-            collectionManager.insert(key, labWork);   // Добавление в коллекцию
-            console.println("\nЭлемент добавлен в коллекцию, чтобы сохранить полученную коллекцию в файл - используйте команду save");
-            console.println(" ");
+
+
+            // Добавление в коллекцию
+            collectionManager.insert(key, labWork);
+            console4.println("\nЭлемент добавлен в коллекцию, чтобы сохранить полученную коллекцию в файл - используйте команду save!");
+            console4.println(" ");
             return true;
+
         } catch (IllegalArgumentException e) {
-            console.println("Ошибка: " + e.getMessage());
+            console4.println("Ошибка: " + e.getMessage());
             return false;
         }
     }
+
+    // Методы для ввода данных (остаются без изменений)
     private int labKey() {
         while (true) {
             try {
@@ -67,131 +85,147 @@ public class InsertCommand extends MainCommand {
                 return Integer.parseInt(input);
             }
             catch(NumberFormatException e){
-                console.println("Ошибка: Ключ должен быть целым числом");
+                console4.println("Ошибка: Ключ должен быть целым числом!");
             }
         }
     }
+
     private String disciplineName(String text) {
         while (true) {
-            String input = console.readLine(text + ": ").trim();
+            String input = console4.readLine(text + ": ").trim();
             if (!input.isEmpty()) {
                 return input;
             }
-            console.println("Ошибка: Поле не может быть пустым");
+            console4.println("Ошибка: Поле не может быть пустым!");
         }
     }
     private String labName(String text) {
         while (true) {
-            String input = console.readLine(text + ": ").trim();
+            String input = console4.readLine(text + ": ").trim();
             if (!input.isEmpty()) {
                 return input;
             }
-            console.println("Ошибка: Поле не может быть пустым");
+            console4.println("Ошибка: Поле не может быть пустым!");
         }
     }
+
     private Coordinates coordinates() {
         while (true) {
             try {
-                console.println("Введите координаты:");
+                console4.println("\nВведите координаты:");
                 int x = CoordinatesInteger("Координата X (целое число > 0)");
                 long y = CoordinatesLong("Координата Y (целое число)");
                 return new Coordinates(x, y);
             } catch (IllegalArgumentException e) {
-                console.println("Ошибка: " + e.getMessage());
+                console4.println("Ошибка: " + e.getMessage());
             }
         }
     }
+
     private int CoordinatesInteger(String text) {
         while (true) {
             try {
-                String input = console.readLine(text + ": ").trim();
+                String input = console4.readLine(text + ": ").trim();
+
                 int value = Integer.parseInt(input);
                 if (value <= 0) {
                     throw new IllegalArgumentException("Значение должно быть больше 0");
                 }
                 return value;
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите целое число");
+                console4.println("Ошибка: Введите целое число!");
             }
         }
     }
+
     private long CoordinatesLong(String text) {
         while (true) {
             try {
-                String input = console.readLine(text + ": ").trim();
+                String input = console4.readLine(text + ": ").trim();
+
                 return Long.parseLong(input);
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите целое число");
+                console4.println("Ошибка: Введите целое число!");
             }
         }
     }
+
     private Double value(String text) {
         while (true) {
             try {
-                String input = console.readLine(text + ": ").trim();
+                String input = console4.readLine(text + ": ").trim();
+
                 double value = Double.parseDouble(input);
                 if (value <= 0) {
                     throw new IllegalArgumentException("Значение должно быть положительным");
                 }
                 return value;
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите число");
+                console4.println("Ошибка: Введите число!");
             }
         }
     }
+
     private Double minimalPoint(String text) {
         while (true) {
             try {
-                String input = console.readLine(text + ": ").trim();
+                String input = console4.readLine(text + ": ").trim();
+
+
                 double value = Double.parseDouble(input);
                 if (value <= 0) {
-                    console.println("Ошибка: Значение должно быть положительным");
+                    console4.println("Ошибка: Значение должно быть положительным");
                     continue;
                 }
                 return value;
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите число");
+                console4.println("Ошибка: Введите число!");
             }
         }
     }
+
     private float qualitiesMinimum(String text) {
         while (true) {
-            try {String input = console.readLine(text + ": ").trim();
+            try {String input = console4.readLine(text + ": ").trim();
+
                 float value = Float.parseFloat(input);
                 if (value <= 0) {
                     throw new IllegalArgumentException("Значение должно быть положительным");
                 }
                 return value;
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите число");
+                console4.println("Ошибка: Введите число!");
             }
         }
     }
-    private Difficulty difficulty() {
-        console.println("Доступные уровни сложности: " + Arrays.toString(DifficultyEnum.values()));
+
+    private DifficultyEnum difficulty() {
+        console4.println("\nДоступные уровни сложности: " + Arrays.toString(DifficultyEnum.values()));
+
         while (true) {
             try {
-                String input = console.readLine("Уровень сложности (можно пропустить): ").trim();
+                String input = console4.readLine("Уровень сложности (можно пропустить): ").trim();
                 if (input.isEmpty()) {
                     return null;
                 }
-                return Difficulty.valueOf(input);
+                return DifficultyEnum.valueOf(input);
             } catch (IllegalArgumentException e) {
-                console.println("Ошибка: Введите одно из: " + Arrays.toString(DifficultyEnum.values()));
+                console4.println("Ошибка: Введите одно из: " + Arrays.toString(DifficultyEnum.values()));
             }
         }
     }
+
     private int lectureHours() {
         while (true) {
             try {
-                String input = console.readLine("Количество лекторских часов: ").trim();
+                String input = console4.readLine("Количество лекторских часов: ").trim();
                 int hours = Integer.parseInt(input);
                 if (hours <= 0) {
                     throw new IllegalArgumentException("Количество часов должно быть положительным");
                 }
                 return hours;
             } catch (NumberFormatException e) {
-                console.println("Ошибка: Введите целое число");
+                console4.println("Ошибка: Введите целое число!");
             }
         }
     }

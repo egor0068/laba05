@@ -1,8 +1,10 @@
 info
-insert
+insert_random
+save
 show
+read
 update
 remove_key
-save
-exit
+info
 clear
+exit

@@ -9,14 +9,14 @@ import java.time.Duration;
 public class InfoCommand extends MainCommand {
     private final Console console;
     private final CollectionManager collectionManager;
-    private final LocalDateTime programStartTime;
+    private static final LocalDateTime PROGRAM_START_TIME = LocalDateTime.now();
 
     public InfoCommand(Console console, CollectionManager collectionManager) {
         super("info", "вывести информацию о коллекции");
         this.console = console;
         this.collectionManager = collectionManager;
-        this.programStartTime = LocalDateTime.now();
     }
+
     @Override
     public boolean apply(String[] arguments) {
         if (arguments.length > 1 && !arguments[1].isEmpty()) {
@@ -38,17 +38,48 @@ public class InfoCommand extends MainCommand {
         console.println("Дата последнего сохранения: " +
                 (saveTime == null ? "не сохранена" : saveTime.format(dateFormat)));
 
-        // Выводим полный путь к файлу сохранения (если он есть)
         String saveFilePath = collectionManager.getSaveFilePath();
         console.println("Файл сохранения коллекции: " +
                 (saveFilePath == null ? "не указан (используйте 'save')" : saveFilePath));
 
-        Duration uptime = Duration.between(programStartTime, LocalDateTime.now());
-        long hours = uptime.toHours();
+        // Корректный расчет времени работы программы
+        Duration uptime = Duration.between(PROGRAM_START_TIME, LocalDateTime.now());
+        long days = uptime.toDays();
+        long hours = uptime.toHours() % 24;
         long minutes = uptime.toMinutes() % 60;
         long seconds = uptime.getSeconds() % 60;
-        console.println("Время работы программы: " +
-                String.format("%d ч. %d мин. %d сек.", hours, minutes, seconds));
+
+        String uptimeString;
+        if (days > 0) {
+            uptimeString = String.format("%d дн. %d ч. %d мин. %d сек.", days, hours, minutes, seconds);
+        } else if (hours > 0) {
+            uptimeString = String.format("%d ч. %d мин. %d сек.", hours, minutes, seconds);
+        } else if (minutes > 0) {
+            uptimeString = String.format("%d мин. %d сек.", minutes, seconds);
+        } else {
+            uptimeString = String.format("%d сек.", seconds);
+        }
+
+        console.println("Время работы программы: " + uptimeString);
         return true;
+    }
+
+    // Остальные методы остаются без изменений
+    @Override
+    public String getDescription() {
+        return super.getDescription();
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    public CollectionManager getCollectionManager() {
+        return collectionManager;
+    }
+
+    public Console getConsole() {
+        return console;
     }
 }

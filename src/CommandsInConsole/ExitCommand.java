@@ -19,4 +19,25 @@ public class ExitCommand extends MainCommand {
         System.exit(0);
         return true;
     }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription();
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String toString() {
+        return "ExitCommand{" +
+                "console=" + console +
+                '}';
+    }
+
+    public Console getConsole() {
+        return console;
+    }
 }

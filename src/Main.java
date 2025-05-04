@@ -1,5 +1,7 @@
 import Collection.*;
 import CommandsInConsole.*;
+
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import Console.Console;
 import static java.lang.System.*;
@@ -10,19 +12,29 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(in);
         CollectionManager collectionManager = new CollectionManager();
-        CommandManager commandManager = new CommandManager();
+        Console console1 = null;
+        CommandManager commandManager = new CommandManager(console1, collectionManager);
         Console console = new Console();
-
         registerCommands(commandManager, console, collectionManager);
 
-        while (true) {
-            printCommandList(commandManager); // Вывод списка команд с номерами
-            out.print("Введите номер или название команды: ");
-            String input = scanner.nextLine().trim();
-            handleUserInput(input, scanner, commandManager);
+        try {
+            while (true) {
+                printCommandList(commandManager);
+                out.print("Введите номер или название команды: ");
+                try {
+                    String input = scanner.nextLine().trim();
+                    handleUserInput(input, scanner, commandManager);
+                } catch (NoSuchElementException e) {
+                    out.println("\nОбнаружен EOF (Ctrl+D). Завершение программы.");
+                    ExitCommand exitCommand = new ExitCommand(console);
+                    exitCommand.apply(new String[0]);
+                    break;
+                }
+            }
+        } finally {
+            scanner.close();
         }
     }
-
     private static void registerCommands(CommandManager commandManager, Console console, CollectionManager collectionManager) {
         commandManager.registerCommand(new InfoCommand(console, collectionManager));
         commandManager.registerCommand(new HelpCommand(console, commandManager));
@@ -39,6 +51,7 @@ public class Main {
         commandManager.registerCommand(new UpdateCommand(console, collectionManager));
         commandManager.registerCommand(new ExecuteScriptCommand(console, collectionManager, commandManager));
         commandManager.registerCommand(new ExitCommand(console));
+        commandManager.registerCommand(new InsertRandomCommand(console, collectionManager));
     }
 
     // Выводит список команд с номерами
@@ -49,7 +62,6 @@ public class Main {
             System.out.println((i + 1) + ". " + commands.get(i).getName());
         }
     }
-
     private static void handleUserInput(String input, Scanner scanner, CommandManager cm) {
         // Получаем команду по вводу (либо по имени, либо по номеру)
         MainCommand command = cm.getCommand(input);
@@ -63,23 +75,20 @@ public class Main {
                 }
             } catch (NumberFormatException ignored) {}
         }
-
-        if (command == null) {
-            System.out.println("Неизвестная команда. Введите 'help' для списка команд.");
-            return;
-        }
-
-        // Запрашиваем аргумент, если это команды Update или RemLowKeyNull
         String argument = "";
         if (command instanceof UpdateCommand || command instanceof RemLowKeyNullCommand) {
             System.out.print("Введите аргумент для " + command.getName() + ": ");
-            argument = scanner.nextLine();
+            try {
+                argument = scanner.nextLine();
+            } catch (NoSuchElementException e) {
+                out.println("\nОбнаружен EOF (Ctrl+D) при вводе аргумента. Команда отменена.");
+                return;
+            }
         }
-
-        // Выполняем команду
         String[] args = argument.isEmpty() ? new String[0] : new String[]{argument};
         if (!command.apply(args)) {
             System.out.println("Использование: " + command.getName() + " - " + command.getDescription());
         }
     }
+
 }

@@ -5,6 +5,7 @@
       <element id="module-output" name="lb5" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../Работы ИТМО по предметам/Лабораторные работы 2024-2025/Лабы по проге/Полезные материалы и другое/Другое/json-20231013.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/src/libs/gson-2.12.1.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/../Работы ИТМО по предметам/Лабораторные работы 2024-2025/Лабы по проге/Полезные материалы и другое/Другое/json-20231013.jar" />
     </root>
   </artifact>
 </component>

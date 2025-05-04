@@ -1,16 +1,10 @@
 package Collection;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.time.format.DateTimeFormatter;
-import java.util.TreeMap;
 import java.time.LocalDateTime;
-import Data.Coordinates;
-import Data.LabWork;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Optional;
+import Data.*;
+import java.util.*;
 
 public class CollectionManager {
 
@@ -25,6 +19,15 @@ public class CollectionManager {
         this.collection = new TreeMap<>(); // Инициализация коллекции
         this.lastInitTime = LocalDateTime.now(); // Время инициализации
         this.lastSaveTime = null;
+    }
+    private String saveFileName = "saveFile.csv"; // Дефолтное имя файла
+
+    public String getSaveFileName() {
+        return saveFileName;
+    }
+
+    public void setSaveFileName(String fileName) {
+        this.saveFileName = fileName;
     }
     // Метод для очистки коллекции
     public void clearCollection() {
@@ -41,16 +44,16 @@ public class CollectionManager {
     public void saveCollection(String filename) throws IOException {
         try (BufferedOutputStream bufStream = new BufferedOutputStream(new FileOutputStream(filename))) {  // Создание буферизированного потока вывода для записи в файл
             for (LabWork lab : collection.values()) {
-                String line = "ID: " + lab.getID() + ", \n"
-                        + "Название: " + lab.getName() + ", \n"
-                        + "Оценка: " + lab.getValue() + ", \n"
-                        + "Координата по X: " +  Coordinates.getX() + ", \n"
-                        + "Координата по Y: " + Coordinates.getY() + ", \n"
-                        + "Дата создания: " + lab.getCreationDate().format(DateTimeFormatter.ISO_LOCAL_DATE) + ", \n"
-                        + "Минимальный балл: " + lab.getMinimalPoint() + ", \n"
-                        + "Личные качества: " + lab.getPersonalQualitiesMinimum() + ", \n"
-                        + "Сложность: " + (lab.getDifficulty() != null ? lab.getDifficulty(): "null") + ", \n"
-                        + "Дисциплина: " + (lab.getDiscipline() != null ? lab.getDiscipline().getName() : "null")
+                String line = "ID; " + lab.getID() + "; \n"
+                        + "Name; " + lab.getName() + "; \n"
+                        + "Value; " + lab.getValue() + "; \n"
+                        + "Coordinates on X; " +  Coordinates.getX() + "; \n"
+                        + "Coordinates on Y; " + Coordinates.getY() + "; \n"
+                        + "Creation date; " + lab.getCreationDate().format(DateTimeFormatter.ISO_LOCAL_DATE) + "; \n"
+                        + "Minimal point; " + lab.getMinimalPoint() + "; \n"
+                        + "Personal qualities; " + lab.getPersonalQualitiesMinimum() + "; \n"
+                        + "Difficulty; " + (lab.getDifficulty() != null ? lab.getDifficulty(): "null") + "; \n"
+                        + "Discipline; " + (lab.getDiscipline() != null ? lab.getDiscipline().getName() : "null") + "; "
                         + "\n\n";
                 bufStream.write(line.getBytes());  // Конвертирует строку в байты и записывает данные в буферизированный поток
             }
@@ -135,7 +138,24 @@ public class CollectionManager {
         return count;
     }
     private String saveFilePath;
+
+    public void setLastInitTime(LocalDateTime lastInitTime) {
+        this.lastInitTime = lastInitTime;
+    }
+
+    public void setSaveFilePath(String saveFilePath) {
+        this.saveFilePath = saveFilePath;
+    }
     public String getSaveFilePath() {
         return this.saveFilePath;
     }
+    public synchronized boolean replaceKey(Integer oldKey, Integer newKey) {
+        if (!collection.containsKey(oldKey) || collection.containsKey(newKey)) {
+            return false;
+        }
+        LabWork labWork = collection.remove(oldKey);
+        collection.put(newKey, labWork);
+        return true;
+    }
+
 }

@@ -12,6 +12,11 @@ public abstract class MainCommand implements Executable, Describable {
         this.name = name;
         this.description = description;
     }
+
+    @Override
+    public boolean apply(String[] arguments) {
+        return false;
+    }
     @Override
     public String getName() {
         return name;

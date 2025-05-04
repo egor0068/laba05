@@ -1,6 +1,7 @@
 package Data;
 import java.time.*;
 import java.util.*;
+import Enum.DifficultyEnum;
 
 public class LabWork {
     // Класс представляющий собой лабораторную работу
@@ -10,13 +11,13 @@ public class LabWork {
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Double minimalPoint; //Поле может быть null, Значение поля должно быть больше 0
     private float personalQualitiesMinimum; //Значение поля должно быть больше 0
-    private Difficulty difficulty; //Поле может быть null
+    private DifficultyEnum difficulty; //Поле может быть null
     private Discipline discipline; //Поле может быть null
     private Double value;
 
     public LabWork(Double value, String name, Coordinates coordinates,
                    LocalDateTime creationDate, Double minimalPoint,
-                   float personalQualitiesMinimum, Difficulty difficulty,
+                   float personalQualitiesMinimum, DifficultyEnum difficulty,
                    Discipline discipline) {
         this.id = generateID();
         this.value = value;
@@ -53,6 +54,12 @@ public class LabWork {
         this.coordinates = coordinates;
     }
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
@@ -86,11 +93,11 @@ public class LabWork {
         this.personalQualitiesMinimum = personalQualitiesMinimum;
     }
 
-    public Difficulty getDifficulty() {
+    public DifficultyEnum getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
+    public void setDifficulty(DifficultyEnum difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -167,7 +174,7 @@ public class LabWork {
 
         System.out.print("Введите сложность (VERY_HARD, IMPOSSIBLE, TERRIBLE или 'null'): ");
         String difficultyInput = scanner.nextLine();
-        labWork.setDifficulty("null".equalsIgnoreCase(difficultyInput) ? null : Difficulty.valueOf(difficultyInput.toUpperCase()));
+        labWork.setDifficulty("null".equalsIgnoreCase(difficultyInput) ? null : DifficultyEnum.valueOf(difficultyInput.toUpperCase()));
 
         System.out.print("Введите название дисциплины: ");
         String disciplineName = scanner.nextLine();

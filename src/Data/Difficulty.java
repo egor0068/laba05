@@ -8,6 +8,7 @@ public class Difficulty {
     public Difficulty(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return name;
@@ -20,7 +21,6 @@ public class Difficulty {
         String upperCaseInput = input.toUpperCase();
         for (DifficultyEnum enumValue : DifficultyEnum.values()) {   // Ищем соответствующую константу в DifficultyEnum
             if (enumValue.name().equals(upperCaseInput)) {
-
                 return convertFromEnum(enumValue);
             }
         }throw new IllegalArgumentException("Неверное значение: " + input +
@@ -35,4 +35,9 @@ public class Difficulty {
                 throw new IllegalArgumentException("Неизвестное значение DifficultyEnum");
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
